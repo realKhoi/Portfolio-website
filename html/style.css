@@ -1,0 +1,256 @@
+/* ============================================================
+   PORTFOLIO TERMINAL — CYAN THEME
+   ============================================================ */
+
+:root {
+  --cyan:        #00e5ff;
+  --cyan-dim:    #00838f;
+  --cyan-bright: #80ffff;
+  --cyan-faint:  #003740;
+  --bg:          #000000;
+  --bg-window:   rgba(0, 4, 8, 0.88);
+  --titlebar-bg: rgba(0, 20, 26, 0.95);
+  --border:      rgba(0, 229, 255, 0.18);
+  --red:         #ff5252;
+  --yellow:      #ffd740;
+  --green:       #69ff47;
+  --white:       #cce8ec;
+  --font:        'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ── Background image ───────────────────────────────────────── */
+.bg-image {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: url('assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08; /* faint — adjust 0.05–0.18 to taste */
+  pointer-events: none;
+}
+
+/* ── Background video ───────────────────────────────────────── */
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.terminal-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+/* ── Terminal window ─────────────────────────────────────────── */
+.terminal-window {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-window);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow:
+    0 0 0 1px rgba(0, 229, 255, 0.06),
+    0 24px 64px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(0, 229, 255, 0.04);
+  overflow: hidden;
+  backdrop-filter: blur(4px);
+}
+
+/* ── Title bar ───────────────────────────────────────────────── */
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 16px;
+  height: 40px;
+  background: var(--titlebar-bg);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.dots {
+  display: flex;
+  gap: 7px;
+  margin-right: 12px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+.dot-red    { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green  { background: #28c840; }
+
+.titlebar-text {
+  flex: 1;
+  text-align: center;
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--cyan-dim);
+  letter-spacing: 0.03em;
+}
+
+.titlebar-spacer {
+  width: 60px; /* mirrors .dots + gap so text stays centered */
+}
+
+/* ── Terminal body ───────────────────────────────────────────── */
+.terminal-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 18px 22px 14px;
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--cyan);
+  cursor: text;
+  scroll-behavior: smooth;
+}
+
+.terminal-body::-webkit-scrollbar       { width: 6px; }
+.terminal-body::-webkit-scrollbar-track { background: transparent; }
+.terminal-body::-webkit-scrollbar-thumb { background: var(--cyan-faint); border-radius: 3px; }
+
+/* ── Output lines ─────────────────────────────────────────────── */
+#output {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.line         { display: block; }
+.line-blank   { display: block; height: 1em; }
+
+.c-cyan       { color: var(--cyan); }
+.c-bright     { color: var(--cyan-bright); }
+.c-dim        { color: var(--cyan-dim); }
+.c-faint      { color: var(--cyan-faint); }
+.c-white      { color: var(--white); }
+.c-red        { color: var(--red); }
+.c-yellow     { color: var(--yellow); }
+.c-green      { color: var(--green); }
+
+.bold         { font-weight: 700; }
+.italic       { font-style: italic; }
+
+/* directory listing columns */
+.ls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2px 16px;
+  margin: 4px 0;
+}
+
+.ls-dir  { color: var(--cyan-bright); font-weight: 700; }
+.ls-file { color: var(--cyan); }
+.ls-link { color: var(--green); }
+
+/* ascii art / motd */
+.motd {
+  color: var(--cyan-dim);
+  line-height: 1.3;
+}
+.motd-accent { color: var(--cyan); }
+
+/* ── Input row ────────────────────────────────────────────────── */
+.input-row {
+  display: flex;
+  align-items: baseline;
+  margin-top: 2px;
+  flex-wrap: nowrap;
+}
+
+.prompt {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.prompt-user { color: var(--cyan-bright); font-weight: 700; }
+.prompt-at   { color: var(--cyan-dim); }
+.prompt-host { color: var(--cyan); font-weight: 700; }
+.prompt-sep  { color: var(--cyan-dim); }
+.prompt-path { color: var(--cyan-dim); }
+.prompt-sym  { color: var(--cyan); }
+
+.input-wrap {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+}
+
+#input-mirror {
+  white-space: pre;
+  color: var(--cyan);
+}
+
+/* blinking block cursor */
+.cursor {
+  color: var(--cyan);
+  animation: blink 1.1s step-end infinite;
+  line-height: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* the real input — invisible, sits behind the mirror */
+#cmd-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: transparent;
+  caret-color: transparent;
+  font-family: var(--font);
+  font-size: 14px;
+  z-index: 10;
+  cursor: text;
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .terminal-wrapper { padding: 0; }
+  .terminal-window  { width: 100%; height: 100%; border-radius: 0; border: none; }
+  .terminal-body    { font-size: 13px; padding: 12px 14px 10px; }
+}

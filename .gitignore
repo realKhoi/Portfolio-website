@@ -1,0 +1,23 @@
+# === SECRETS ===
+.env
+.env.*
+
+# === GO (backend, for when you add it) ===
+bin/
+*.exe
+*.out
+
+# === DOCKER ===
+docker-compose.override.yml
+
+# === LOGS ===
+*.log
+logs/
+
+# === OS JUNK ===
+.DS_Store
+Thumbs.db
+
+# === EDITOR ===
+.vscode/
+.idea/

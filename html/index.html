@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>portfolio — bash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Replace assets/bg.jpg with your own background image -->
+<video autoplay loop muted playsinline>
+  <source src="assets/JakeTheDog.mp4" type="video/mp4">
+</video>
+
+  <div class="terminal-wrapper">
+    <div class="terminal-window">
+
+      <div class="titlebar">
+        <div class="dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span class="titlebar-text" id="titlebar-text">visitor@portfolio: ~</span>
+        <div class="titlebar-spacer"></div>
+      </div>
+
+      <div class="terminal-body" id="terminal-body">
+        <div id="output"></div>
+        <div class="input-row" id="input-row">
+          <span class="prompt" id="prompt-label"></span>
+          <div class="input-wrap">
+            <span id="input-mirror"></span><span class="cursor" id="cursor">█</span>
+            <!-- hidden input captures actual keystrokes -->
+            <input type="text" id="cmd-input" autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="module" src="terminal.js"></script>
+</body>
+</html>
