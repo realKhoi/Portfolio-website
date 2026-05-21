@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login — khoiServer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .login-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-banner {
+      color: var(--cyan-dim);
+      line-height: 1.4;
+      margin-bottom: 22px;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .login-field {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .login-label {
+      white-space: nowrap;
+      min-width: 11ch;
+      color: var(--cyan-dim);
+    }
+
+    .login-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--cyan-faint);
+      outline: none;
+      color: var(--cyan);
+      font-family: var(--font);
+      font-size: 14px;
+      padding: 2px 4px;
+      caret-color: var(--cyan);
+      max-width: 260px;
+      transition: border-color 0.15s;
+    }
+
+    .login-input:focus {
+      border-bottom-color: var(--cyan);
+    }
+
+    .login-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .btn-login {
+      background: transparent;
+      border: 1px solid var(--cyan-dim);
+      color: var(--cyan);
+      font-family: var(--font);
+      font-size: 14px;
+      padding: 5px 20px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-login:hover {
+      border-color: var(--cyan);
+      color: var(--cyan-bright);
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.18);
+    }
+
+    .btn-login:active {
+      color: var(--cyan-bright);
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.28);
+    }
+
+    #login-status {
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .login-input { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay loop muted playsinline>
+    <source src="assets/JakeTheDog.mp4" type="video/mp4">
+  </video>
+
+  <div class="terminal-wrapper">
+    <div class="terminal-window">
+
+      <div class="titlebar">
+        <div class="dots">
+          <span class="dot dot-red"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-green"></span>
+        </div>
+        <span class="titlebar-text">admin@khoiServer: ~</span>
+        <div class="titlebar-spacer"></div>
+      </div>
+
+      <div class="terminal-body login-body" id="terminal-body">
+
+        <div class="login-banner">
+          <span>┌─────────────────────────────────────────────┐</span><br>
+          <span>│&nbsp; </span><span class="c-cyan bold">khoiServer</span><span class="c-dim"> — restricted access&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;│</span><br>
+          <span>└─────────────────────────────────────────────┘</span>
+        </div>
+
+        <div class="line c-dim">Authenticate to continue.</div>
+        <div class="line-blank"></div>
+
+        <form class="login-form" id="login-form" autocomplete="off" novalidate>
+          <div class="login-field">
+            <label class="login-label" for="username">login&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+            <input
+              class="login-input"
+              type="text"
+              id="username"
+              name="username"
+              spellcheck="false"
+              autocomplete="off"
+              autofocus
+            >
+          </div>
+          <div class="login-field">
+            <label class="login-label" for="password">password :</label>
+            <input
+              class="login-input"
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="off"
+            >
+          </div>
+          <div class="login-actions">
+            <button class="btn-login" type="submit">[ authenticate ]</button>
+            <span id="login-status"></span>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
