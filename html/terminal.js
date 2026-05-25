@@ -157,7 +157,7 @@ function startContactForm() {
  Control + Z to go back to previous step
  \n\n`)
     formState = { step: 'name', name: '', email: '', message: '' };
-    append('what\'s your name?\n');
+    append('What\'s your name?\n');
 }
 
 function handleFormInput(input) {
@@ -165,11 +165,15 @@ function handleFormInput(input) {
         formState.name = input;
         formState.step = 'email';
         append(`What's your email?\n`);
+        promptLbl.innerHTML = `<span class="c-cyan">name &gt; </span>`;
+
 
     } else if (formState.step === 'email') {
         formState.email = input;
         formState.step = 'message';
         append(`what's your message?\n`);
+        promptLbl.innerHTML = `<span class="c-cyan">email &gt; </span>`;
+
 
     } else if (formState.step === 'message') {
         formState.message = input;
@@ -189,6 +193,8 @@ function handleFormInput(input) {
             append('Something went wrong\n');
             formState = null;
         });
+
+        updatePrompt()
     }
 }
 
@@ -445,6 +451,7 @@ cmdInput.addEventListener('keydown', (e) => {
     if (formState){
       formState = null;
       append('Form cancelled\n')
+      updatePrompt()
     }
     appendLine(
       `<span class="prompt-user">${CONFIG.user}</span>` +
@@ -460,14 +467,14 @@ cmdInput.addEventListener('keydown', (e) => {
   } else if (e.key === 'z' && e.ctrlKey) {
     e.preventDefault();
     if (formState){
-      elseif (formState.step === 'email')
+      if (formState.step === 'email')
         formState.step = 'name'
         formState.name = ''
-        append('Name: ')
+        promptLbl.innerHTML = `<span class="c-cyan">name &gt; </span>`;
     } else if (formState.step === 'message'){
         formState.step = 'email'
         formState.email = ''
-        append('Email: ')
+        promptLbl.innerHTML = `<span class="c-cyan">email &gt; </span>`;
     } else if (formState.step === 'name') {
         append('CTRL + C to exit the form!')
     }
