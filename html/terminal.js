@@ -143,6 +143,7 @@ function escHtml(s) {
 }
 
 let formState = null;
+let formInput = null;
 
 function startContactForm() {
     append(`      
@@ -155,29 +156,32 @@ function startContactForm() {
 
  Control + C to exit out of form
  Control + Z to go back to previous step
+
+ Your message will be sent to my email, I will come back to you as soon as I can!
  \n\n`)
     formState = { step: 'name', name: '', email: '', message: '' };
-    append('What\'s your name?\n');
+    promptLbl.innerHTML = `<span class="c-cyan">Name:; </span>`;
 }
 
 function handleFormInput(input) {
     if (formState.step === 'name') {
         formState.name = input;
         formState.step = 'email';
-        append(`What's your email?\n`);
-        promptLbl.innerHTML = `<span class="c-cyan">name &gt; </span>`;
-
+        promptLbl.innerHTML = `<span class="c-cyan">name:; </span>`;
+        append(promptLbl.innerHTML)
 
     } else if (formState.step === 'email') {
         formState.email = input;
         formState.step = 'message';
-        append(`what's your message?\n`);
-        promptLbl.innerHTML = `<span class="c-cyan">email &gt; </span>`;
-
+        promptLbl.innerHTML = `<span class="c-cyan">email:; </span>`;
+        append(promptLbl.innerHTML)
 
     } else if (formState.step === 'message') {
         formState.message = input;
         formState.step = null;
+        promptLbl.innerHTML = `<span class="c-cyan">message:; </span>`;
+        append(promptLbl.innerHTML)
+
         append('sending...\n');
 
         fetch('http://localhost:8080/contact', {
@@ -193,7 +197,7 @@ function handleFormInput(input) {
             append('Something went wrong\n');
             formState = null;
         });
-
+        append('Sent!')
         updatePrompt()
     }
 }
@@ -471,10 +475,12 @@ cmdInput.addEventListener('keydown', (e) => {
         formState.step = 'name'
         formState.name = ''
         promptLbl.innerHTML = `<span class="c-cyan">name &gt; </span>`;
+        append(promptLbl.innerHTML)
     } else if (formState.step === 'message'){
         formState.step = 'email'
         formState.email = ''
         promptLbl.innerHTML = `<span class="c-cyan">email &gt; </span>`;
+        append(promptLbl.innerHTML)
     } else if (formState.step === 'name') {
         append('CTRL + C to exit the form!')
     }
