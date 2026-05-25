@@ -1,3 +1,5 @@
+import { append } from './terminal.js';
+
 let formState = null;
 
 function startContactForm() {

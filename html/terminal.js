@@ -106,7 +106,7 @@ function updatePrompt() {
   titlebar.textContent = `${CONFIG.user}@${CONFIG.hostname}: ${path}`;
 }
 
-function append(html) {
+export function append(html) {
   const span = document.createElement('span');
   span.innerHTML = html;
   output.appendChild(span);
@@ -409,17 +409,18 @@ cmdInput.addEventListener('keydown', (e) => {
     mirror.textContent = '';
   } else if (e.key === 'z' && e.ctrlKey) {
     e.preventDefault();
-    
-    if (formState.step === 'email')
-      formState.step = 'name'
-      formState.name = ''
-      append('Name: ')
-  } else if (formState.step === 'message'){
-      formState.step = 'email'
-      formState.email = ''
-      append('Email: ')
-  } else if (formState.step === 'name') {
-      append('CTRL + C to exit the form!')
+    if (formState){
+      elseif (formState.step === 'email')
+        formState.step = 'name'
+        formState.name = ''
+        append('Name: ')
+    } else if (formState.step === 'message'){
+        formState.step = 'email'
+        formState.email = ''
+        append('Email: ')
+    } else if (formState.step === 'name') {
+        append('CTRL + C to exit the form!')
+    }
   }
 });
 
