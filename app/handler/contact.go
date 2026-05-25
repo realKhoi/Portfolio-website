@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"net/smtp"
-	"strings"
 	"golang.org/x/time/rate"
 	"os"
 )

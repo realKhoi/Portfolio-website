@@ -189,7 +189,7 @@ function handleFormInput(input) {
         
         append('sending...\n');
 
-        fetch('http://localhost:8080/contact', {
+        fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formState)
