@@ -1,12 +1,12 @@
 package main
 
 import (
-    "encoding/json"
     "net/http"
+    "portfoliosite/handler"
 )
 
 func main() {
-    http.HandleFunc("/contact", contactHandler)
+    http.HandleFunc("/contact", ContactHandler)
     http.ListenAndServe(":8080", nil)
 }
 
