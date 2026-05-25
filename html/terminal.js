@@ -160,26 +160,25 @@ function startContactForm() {
  Your message will be sent to my email, I will come back to you as soon as I can!
  \n\n`)
     formState = { step: 'name', name: '', email: '', message: '' };
-    promptLbl.innerHTML = `<span class="c-cyan">Name:; </span>`;
 }
 
 function handleFormInput(input) {
     if (formState.step === 'name') {
         formState.name = input;
         formState.step = 'email';
-        promptLbl.innerHTML = `<span class="c-cyan">name:; </span>`;
+        promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
         append(promptLbl.innerHTML)
 
     } else if (formState.step === 'email') {
         formState.email = input;
         formState.step = 'message';
-        promptLbl.innerHTML = `<span class="c-cyan">email:; </span>`;
+        promptLbl.innerHTML = `<span class="c-cyan">email: </span>`;
         append(promptLbl.innerHTML)
 
     } else if (formState.step === 'message') {
         formState.message = input;
         formState.step = null;
-        promptLbl.innerHTML = `<span class="c-cyan">message:; </span>`;
+        promptLbl.innerHTML = `<span class="c-cyan">message: </span>`;
         append(promptLbl.innerHTML)
 
         append('sending...\n');
@@ -474,12 +473,12 @@ cmdInput.addEventListener('keydown', (e) => {
       if (formState.step === 'email')
         formState.step = 'name'
         formState.name = ''
-        promptLbl.innerHTML = `<span class="c-cyan">name &gt; </span>`;
+        promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
         append(promptLbl.innerHTML)
     } else if (formState.step === 'message'){
         formState.step = 'email'
         formState.email = ''
-        promptLbl.innerHTML = `<span class="c-cyan">email &gt; </span>`;
+        promptLbl.innerHTML = `<span class="c-cyan">email:  </span>`;
         append(promptLbl.innerHTML)
     } else if (formState.step === 'name') {
         append('CTRL + C to exit the form!')
