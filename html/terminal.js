@@ -164,28 +164,27 @@ function startContactForm() {
  Your message will be sent to my email, I will come back to you as soon as I can!
  \n\n`)
     formState = { step: 'name', name: '', email: '', message: '' };
-    promptLbl.innerHTML = `<span class="c-cyan">name : </span>`;
+    promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
 }
 
 function handleFormInput(input) {
     if (formState.step === 'name') {
         formState.name = input;
-        formLine('name: ', input)
-        promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
-         formState.step = 'email';
+        append(formLine('name: ', input))
+        promptLbl.innerHTML = `<span class="c-cyan">email: </span>`;
+        formState.step = 'email';
 
 
     } else if (formState.step === 'email') {
         formState.email = input;
-        formLine('email: ', input)
-        promptLbl.innerHTML = `<span class="c-cyan">email: </span>`;
+        append(formLine('email: ', input))
+        promptLbl.innerHTML = `<span class="c-cyan">message: </span>`;
         formState.step = 'message';
        
 
     } else if (formState.step === 'message') {
         formState.message = input;
-        formLine('message: ', input)
-        promptLbl.innerHTML = `<span class="c-cyan">message: </span>`;
+        append(formLine('message: ', input))
         formState.step = null;
         
         append('sending...\n');
@@ -205,6 +204,22 @@ function handleFormInput(input) {
         });
         updatePrompt()
     }
+}
+
+function formUndo(){
+  if (formState){
+      if (formState.step === 'email'){
+        formState.step = 'name'
+        formState.name = ''
+        promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
+      } else if (formState.step === 'message'){
+        formState.step = 'email'
+        formState.email = ''
+        promptLbl.innerHTML = `<span class="c-cyan">email:  </span>`;
+      } else if (formState.step === 'name') {
+        promptLbl.innerHTML = `<span class="c-cyan">CTRL + C to exit!  </span>`;
+      }   
+  }
 }
 
 // ── COMMANDS ──────────────────────────────────────────────────
@@ -475,20 +490,7 @@ cmdInput.addEventListener('keydown', (e) => {
     mirror.textContent = '';
   } else if (e.key === 'z' && e.ctrlKey) {
     e.preventDefault();
-    if (formState){
-      if (formState.step === 'email')
-        formState.step = 'name'
-        formState.name = ''
-        promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
-        append(promptLbl.innerHTML)
-    } else if (formState.step === 'message'){
-        formState.step = 'email'
-        formState.email = ''
-        promptLbl.innerHTML = `<span class="c-cyan">email:  </span>`;
-        append(promptLbl.innerHTML)
-    } else if (formState.step === 'name') {
-        append('CTRL + C to exit the form!')
-    }
+    formUndo()
   }
 });
 
