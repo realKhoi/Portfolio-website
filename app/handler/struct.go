@@ -1,4 +1,4 @@
-package
+package handler
 
 type ContactRequest struct {
     Name    string `json:"name"`
