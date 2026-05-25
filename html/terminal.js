@@ -358,7 +358,11 @@ cmdInput.addEventListener('keydown', (e) => {
     const val = cmdInput.value;
     cmdInput.value = '';
     mirror.textContent = '';
-    runCommand(val);
+    if (formState){
+      handleFormInput(val)
+    } else {
+      runCommand(val);
+    }
 
   } else if (e.key === 'Tab') {
     e.preventDefault();
@@ -387,6 +391,11 @@ cmdInput.addEventListener('keydown', (e) => {
 
   } else if (e.key === 'c' && e.ctrlKey) {
     e.preventDefault();
+
+    if (formState){
+      formState = null;
+      append('Form cancelled\n')
+    }
     appendLine(
       `<span class="prompt-user">${CONFIG.user}</span>` +
       `<span class="prompt-at">@</span>` +
@@ -398,6 +407,19 @@ cmdInput.addEventListener('keydown', (e) => {
     );
     cmdInput.value = '';
     mirror.textContent = '';
+  } else if (e.key === 'z' && e.ctrlKey) {
+    e.preventDefault();
+    
+    if (formState.step === 'email')
+      formState.step = 'name'
+      formState.name = ''
+      append('Name: ')
+  } else if (formState.step === 'message'){
+      formState.step = 'email'
+      formState.email = ''
+      append('Email: ')
+  } else if (formState.step === 'name') {
+      append('CTRL + C to exit the form!')
   }
 });
 
