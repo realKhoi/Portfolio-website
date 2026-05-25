@@ -144,7 +144,7 @@ function escHtml(s) {
 
 
 function formLine(label, value) {
-    return `<span class="c-cyan">${label} : </span><span class="c-white">${escHtml(value)}</span>\n`;
+    return `<span class="c-cyan">${label}: </span><span class="c-white">${escHtml(value)}</span>\n`;
 }
 
 let formState = null;
@@ -170,21 +170,21 @@ function startContactForm() {
 function handleFormInput(input) {
     if (formState.step === 'name') {
         formState.name = input;
-        append(formLine('name: ', input))
+        append(formLine('name', input))
         promptLbl.innerHTML = `<span class="c-cyan">email: </span>`;
         formState.step = 'email';
 
 
     } else if (formState.step === 'email') {
         formState.email = input;
-        append(formLine('email: ', input))
+        append(formLine('email', input))
         promptLbl.innerHTML = `<span class="c-cyan">message: </span>`;
         formState.step = 'message';
        
 
     } else if (formState.step === 'message') {
         formState.message = input;
-        append(formLine('message: ', input))
+        append(formLine('message', input))
         formState.step = null;
         
         append('sending...\n');
