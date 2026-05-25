@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-    http.HandleFunc("/contact", ContactHandler)
+    http.HandleFunc("/contact", handler.ContactHandler)
     http.ListenAndServe(":8080", nil)
 }
 
