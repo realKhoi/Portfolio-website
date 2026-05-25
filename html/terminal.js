@@ -142,8 +142,12 @@ function escHtml(s) {
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+
+function formLine(label, value) {
+    return `<span class="c-cyan">${label} : </span><span class="c-white">${escHtml(value)}</span>\n`;
+}
+
 let formState = null;
-let formInput = null;
 
 function startContactForm() {
     append(`      
@@ -160,27 +164,30 @@ function startContactForm() {
  Your message will be sent to my email, I will come back to you as soon as I can!
  \n\n`)
     formState = { step: 'name', name: '', email: '', message: '' };
+    promptLbl.innerHTML = `<span class="c-cyan">name : </span>`;
 }
 
 function handleFormInput(input) {
     if (formState.step === 'name') {
         formState.name = input;
-        formState.step = 'email';
+        formLine('name: ', input)
         promptLbl.innerHTML = `<span class="c-cyan">name: </span>`;
-        append(promptLbl.innerHTML)
+         formState.step = 'email';
+
 
     } else if (formState.step === 'email') {
         formState.email = input;
-        formState.step = 'message';
+        formLine('email: ', input)
         promptLbl.innerHTML = `<span class="c-cyan">email: </span>`;
-        append(promptLbl.innerHTML)
+        formState.step = 'message';
+       
 
     } else if (formState.step === 'message') {
         formState.message = input;
-        formState.step = null;
+        formLine('message: ', input)
         promptLbl.innerHTML = `<span class="c-cyan">message: </span>`;
-        append(promptLbl.innerHTML)
-
+        formState.step = null;
+        
         append('sending...\n');
 
         fetch('http://localhost:8080/contact', {
@@ -196,7 +203,6 @@ function handleFormInput(input) {
             append('Something went wrong\n');
             formState = null;
         });
-        append('Sent!')
         updatePrompt()
     }
 }
