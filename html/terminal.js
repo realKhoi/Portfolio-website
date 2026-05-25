@@ -176,7 +176,7 @@ const COMMANDS = {
   },
 
   contact() {
-    append(`<span class="c-white">${escHtml(DATA.contact)}</span>\n`);
+    startContactForm();
   },
 
   resume() {
