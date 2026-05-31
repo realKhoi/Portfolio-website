@@ -9,14 +9,18 @@ export const CONFIG = {
 // Edit these to fill in your real info.
 export const DATA = {
   about: `
-  Name    : Your Name
-  Role    : Software Developer
-  Based   : Your City, Country
+  Name    : Khoi Le
+  Role    : DIGSEC Student
+  Based   : Gjøvik, Norway
   Status  : Open to opportunities
 
-  Hi! I'm a passionate developer who loves building things for the web.
-  I specialize in [your stack here] and enjoy working on projects that
-  solve real problems.
+  Hi! I'm a student studying Digital Infrastructure and Cybersecurity 
+  at NTNU Gjøvik. I enjoy the infrastructure part of the courses where we learn 
+  how to build robust and scalable services and run cloud infrastrucure.
+  I have also grown to like operating systems in general where we can automate 
+  our workflows using tools like cronjobs. 
+  
+  In short I enjoy making abstract things come to life!
 
   Type  ls        to browse files
         cat <file> to read a file
@@ -25,16 +29,16 @@ export const DATA = {
 
   skills: `
   ── Languages ──────────────────────────────────
-    Python · JavaScript · TypeScript · Go · Bash
+    Python · JavaScript · Go · Bash · C/C++
 
   ── Frontend ───────────────────────────────────
-    React · HTML5 · CSS3 · Tailwind
+    Javascript · HTML · CSS 
 
   ── Backend & Infra ────────────────────────────
-    Node.js · FastAPI · Nginx · Docker
+    Go · Nginx · Docker
 
   ── Tools ──────────────────────────────────────
-    Git · Linux · PostgreSQL · Redis
+    Git · GitHub actions · Linux 
 `,
 
   contact: `
@@ -47,22 +51,30 @@ export const DATA = {
 `,
 
   projects: {
-    'project1.md': `
-  ── Project One ────────────────────────────────
-  A brief description of what this project does
-  and the problem it solves.
+    'PortfolioSite.md': `
+  ── Project site ────────────────────────────────
+  This is my first project, a terminal based portfolio site. I wanted a site
+  that reflects me and what I enjoy doing. After some inspiration from the internet
+  I ended up with this. I have learnt alot from this project like how to safely host a server
+  myself using my own hardware. That way I am providing my own IaaS :)
+  
+  My JavaScript and HTML was really rusty so Claude Code helped me make the baseline,
+  intigrating claude code into my workflow have been interesting and suprising.
+  For the backend I have done mostly myself, although I had to look up quite a bit.
 
-  Stack  : Python, FastAPI, PostgreSQL, Docker
-  Status : Live
+  If you want to know more check out the repository!
+
+  Stack  : JavaScript, HTML, CSS, Go, Docker, Nginx
+  Status : In progress
   Repo   : https://github.com/you/project1
 `,
     'project2.md': `
   ── Project Two ────────────────────────────────
-  Another cool project description goes here.
-  What makes it interesting?
+  Planning to make an anonymous email delivery system! 
+  It is aimed to be easy to use, no login required, just write your message and send!
 
-  Stack  : React, Node.js, MongoDB
-  Status : In progress
+  Stack  : Un-decided
+  Status : Planning
   Repo   : https://github.com/you/project2
 `,
     'project3.md': `
