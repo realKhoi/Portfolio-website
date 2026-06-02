@@ -239,7 +239,6 @@ const COMMANDS = {
   <span class="c-bright">contact</span>       <span class="c-dim">get in touch</span>
   <span class="c-bright">resume</span>        <span class="c-dim">download my resume</span>
   <span class="c-bright">clear</span>         <span class="c-dim">clear the terminal</span>
-  <span class="c-bright">uname -a</span>      <span class="c-dim">system info</span>
 \n`);
   },
 
