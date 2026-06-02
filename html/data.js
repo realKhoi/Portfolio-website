@@ -44,10 +44,9 @@ export const DATA = {
   contact: `
   ── Get in touch ───────────────────────────────
 
-    Email   : you@example.com
-    GitHub  : https://github.com/yourusername
-    LinkedIn: https://linkedin.com/in/yourusername
-    Twitter : @yourhandle
+    Email   : khoiminhle124@gmail.com
+    GitHub  : https://github.com/realKhoi
+    LinkedIn: https://www.linkedin.com/in/khoi-le-b62b93390/
 `,
 
   projects: {
@@ -66,24 +65,16 @@ export const DATA = {
 
   Stack  : JavaScript, HTML, CSS, Go, Docker, Nginx
   Status : In progress
-  Repo   : https://github.com/you/project1
+  Repo   : https://github.com/realKhoi/Portfolio-website
 `,
-    'project2.md': `
+    'AnonymousEmail.md': `
   ── Project Two ────────────────────────────────
   Planning to make an anonymous email delivery system! 
   It is aimed to be easy to use, no login required, just write your message and send!
 
   Stack  : Un-decided
   Status : Planning
-  Repo   : https://github.com/you/project2
-`,
-    'project3.md': `
-  ── Project Three ──────────────────────────────
-  Description of your third project.
-
-  Stack  : Go, Redis, Nginx
-  Status : Completed
-  Repo   : https://github.com/you/project3
+  Repo   : 
 `,
   },
 };
