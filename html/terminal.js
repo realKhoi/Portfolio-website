@@ -237,7 +237,6 @@ const COMMANDS = {
   <span class="c-bright">pwd</span>           <span class="c-dim">print current path</span>
   <span class="c-bright">skills</span>        <span class="c-dim">view my tech stack</span>
   <span class="c-bright">contact</span>       <span class="c-dim">get in touch</span>
-  <span class="c-bright">resume</span>        <span class="c-dim">download my resume</span>
   <span class="c-bright">clear</span>         <span class="c-dim">clear the terminal</span>
 \n`);
   },
@@ -258,13 +257,14 @@ const COMMANDS = {
     startContactForm();
   },
 
+  /*
   resume() {
     appendLine(`  <span class="c-dim">Opening resume...</span>`);
     appendLine(`  <span class="c-green">→</span> <a href="assets/resume.pdf" target="_blank" download style="color:var(--cyan)">assets/resume.pdf</a>`);
     appendBlank();
     window.open('assets/resume.pdf', '_blank');
   },
-
+*/
   clear() {
     output.innerHTML = '';
   },
@@ -274,6 +274,7 @@ const COMMANDS = {
     appendBlank();
   },
 
+  /*
   'uname'(args) {
     if (args.includes('-a')) {
       appendLine(`  <span class="c-dim">PortfolioOS 6.1.0-portfolio #1 SMP PREEMPT x86_64 GNU/Linux</span>`);
@@ -282,7 +283,7 @@ const COMMANDS = {
     }
     appendBlank();
   },
-
+*/
   echo(args) {
     appendLine(`  ${escHtml(args.join(' '))}`);
     appendBlank();
