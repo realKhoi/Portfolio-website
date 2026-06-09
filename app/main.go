@@ -2,11 +2,11 @@ package main
 
 import (
     "net/http"
-    "portfoliosite/handler"
+    "portfolio-website/app/handler"
 )
 
 func main() {
-    http.HandleFunc("/contact", handler.ContactHandler)
+    http.Handle("/contact", &handler.ContactHandler{Send: handler.SendEmail})
     http.ListenAndServe(":8080", nil)
 }
 

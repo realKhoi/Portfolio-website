@@ -11,7 +11,11 @@ import (
 
 var limiter = rate.NewLimiter(0.1, 1)
 
-func ContactHandler(w http.ResponseWriter, r *http.Request){
+type ContactHandler struct {
+    Send func(name, email, message string) error
+}
+
+func (h *ContactHandler) ServeHTTP(w http.ResponseWriter, r *http.Request){
 	w.Header().Set("Access-Control-Allow-Origin", "*")
     w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
@@ -32,9 +36,12 @@ func ContactHandler(w http.ResponseWriter, r *http.Request){
 	}
 
 	var req ContactRequest
-    json.NewDecoder(r.Body).Decode(&req)
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+    http.Error(w, "invalid body", http.StatusBadRequest)
+    return
+}
 
-	err := sendEmail(req.Name, req.Email, req.Message)
+	err := h.Send(req.Name, req.Email, req.Message)
     if err != nil {
         http.Error(w, "failed to send", http.StatusInternalServerError)
         return
@@ -45,7 +52,7 @@ func ContactHandler(w http.ResponseWriter, r *http.Request){
 
 }
 
-func sendEmail(name, email, message string) error {
+func SendEmail(name, email, message string) error {
 	from := os.Getenv("GMAIL")
 	password := os.Getenv("GMAIL_PASSWORD")
 	to := os.Getenv("GMAIL")
