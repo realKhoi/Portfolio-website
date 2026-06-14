@@ -18,28 +18,30 @@ jobs:
       - name: Run tests
         run: go test ./...
 
-  name: Install cloudflared
-  run: |
-    curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
-    sudo mv cloudflared /usr/local/bin
-    sudo chmod +x /usr/local/bin/cloudflared
+
 
   deploy:
     runs-on: ubuntu-latest
     needs: test  
     steps:
-      - name: SSH into server and deploy
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY_RPI }}
-          proxy_host: ssh.khoiware.com
-          proxy_port: 443
-          proxy_command: cloudflared access ssh --hostname %h
-          script: |
-            cd /opt/portfolioSite/
-            git pull
-            sudo docker compose down
-            sudo docker compose up --build -d
+    - name: Install cloudflared
+      run: |
+        curl -L https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o cloudflared
+        sudo mv cloudflared /usr/local/bin
+        sudo chmod +x /usr/local/bin/cloudflared
+
+    - name: SSH into server and deploy
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_KEY_RPI }}
+        proxy_host: ssh.khoiware.com
+        proxy_port: 443
+        proxy_command: cloudflared access ssh --hostname %h
+        script: |
+          cd /opt/portfolioSite/
+          git pull
+          sudo docker compose down
+          sudo docker compose up --build -d
           
