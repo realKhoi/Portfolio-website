@@ -16,7 +16,7 @@ jobs:
           go-version: '1.22'
 
       - name: Run tests
-        run: go test ./...
+        run: cd app && go test ./...
 
 
 
