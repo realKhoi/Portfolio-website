@@ -2,7 +2,7 @@ package main
 
 import (
     "net/http"
-    "portfolio-website/app/handler"
+    "portfolio-website/handler"
 )
 
 func main() {
